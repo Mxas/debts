@@ -1,0 +1,76 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:jee="http://www.springframework.org/schema/jee"
+    xmlns:lang="http://www.springframework.org/schema/lang"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+ 
+ 
+    <!-- params -->
+    <bean id="propertyLocations" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <value>classpath*:conf/default/*.properties</value>
+                <value>classpath*:conf/custom/*.properties</value>
+            </list>
+        </constructor-arg>
+    </bean>
+    <bean id="propertyConfigurer" class="org.springframework.web.context.support.ServletContextPropertyPlaceholderConfigurer">
+        <property name="locations" ref="propertyLocations" />
+    </bean> 
+    <!-- end params -->  
+ 
+ 
+    <context:annotation-config />
+    <context:component-scan base-package="eu.fourFinance" scoped-proxy="targetClass" />
+    
+    
+     <!-- JPA configuration for module -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="${daoConnect.driverClass}" />
+        <property name="jdbcUrl" value="${daoConnect.url}" />
+        <property name="user" value="${daoConnect.username}" />
+        <property name="password" value="${daoConnect.password}" />
+        <property name="maxPoolSize" value="${daoConnect.maxPoolSize}" />
+        <property name="maxIdleTime" value="${daoConnect.maxIdleTime}" />
+        <property name="idleConnectionTestPeriod" value="${daoConnect.idleConnectionTestPeriod}" />
+        <property name="unreturnedConnectionTimeout" value="${daoConnect.unreturnedConnectionTimeout}" />
+    </bean>
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="generateDdl" value="true" />
+                <property name="database" value="${daoConnect.paVendorAdapter.database}" />
+                <property name="showSql" value="${daoConnect.paVendorAdapter.showSql}" />
+            </bean>
+        </property>
+        <property name="persistenceUnitName" value="test.jpa.pu" />
+        <property name="jpaProperties">
+            <props>
+                 <prop key="hibernate.hbm2ddl.auto">create</prop>  
+            </props>
+        </property>
+    </bean>
+    <bean id="transactionManager" name="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+    <tx:annotation-driven />
+    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+    <!-- END JPA configuration for module -->
+    
+    
+    
+</beans>
