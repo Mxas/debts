@@ -8,10 +8,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
-public class Evalution {
+@NamedQueries({
+	@NamedQuery(name = Evaluation.SUBJECT_EVALUATIONS, 
+			query = "select e from Evaluation as e where e.subject = :subject" )
+	})
+public class Evaluation {
 
+	public static final String SUBJECT_EVALUATIONS = "SUBJECT_EVALUATIONS";
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

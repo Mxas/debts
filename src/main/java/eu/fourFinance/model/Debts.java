@@ -17,7 +17,7 @@ public class Debts {
 	private Long id;
 
 	@ManyToOne
-	private Evalution evalution;
+	private Evaluation evaluation;
 
 	@OneToOne
 	private Debts extencionOf;
