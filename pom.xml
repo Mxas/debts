@@ -11,7 +11,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.version>3.0.7.RELEASE</spring.version>
+        <spring.version>3.2.4.RELEASE</spring.version>
         <hibernate.version>4.2.0.Final</hibernate.version>
         <hibernateEM.version>3.3.2.GA</hibernateEM.version>
     </properties>
@@ -46,7 +46,7 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>1.3.168</version>
+            <version>1.3.174</version>
         </dependency>
         <dependency>
             <groupId>org.hsqldb</groupId>

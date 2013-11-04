@@ -2,15 +2,13 @@ package eu.fourFinance.dao;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import eu.fourFinance.model.Debts;
+import eu.fourFinance.model.Evaluation;
 
 public interface DebtsDAO {
 
+	public Debts createDebt(Evaluation evaluation);
 
-	
+	public Debts createDebtExtension(Debts old, Date extencionDate,
+			Double extencionRate);
 }
