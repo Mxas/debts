@@ -8,13 +8,16 @@ import java.util.Date;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import eu.fourFinance.BaseTest;
 import eu.fourFinance.model.Debts;
 import eu.fourFinance.model.Evaluation;
 import eu.fourFinance.model.Subject;
+import eu.fourFinance.testsuites.IntegrationTests;
 
+@Category(IntegrationTests.class)
 public class DebtsDAOTest extends BaseTest {
 
 	@Autowired
