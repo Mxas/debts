@@ -12,4 +12,7 @@ public interface EvaluationDAO {
 			Integer term,Double rate, String requestIP, Double calculatedCoef);
 	
 	public List<Evaluation> getSubjectEvaluation(Subject subject);
+
+	public Long countGivenLoan(String requestIp, Date from,
+			Date till);
 }

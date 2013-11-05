@@ -14,6 +14,7 @@ import eu.fourFinance.BaseTest;
 import eu.fourFinance.model.Evaluation;
 import eu.fourFinance.model.Subject;
 import eu.fourFinance.testsuites.IntegrationTests;
+import eu.fourFinance.utils.DateUtils;
 
 @Category(IntegrationTests.class)
 public class EvaluationDAOTest extends BaseTest {
@@ -23,6 +24,9 @@ public class EvaluationDAOTest extends BaseTest {
 
 	@Autowired
 	private EvaluationDAO evaluationDAO;
+
+	@Autowired
+	private DebtsDAO debtsDAO;
 
 	private static final String SUBJECT_CODE = "c";
 	private Subject subject;
@@ -63,6 +67,21 @@ public class EvaluationDAOTest extends BaseTest {
 				0d);
 
 		assertEquals(2, evaluationDAO.getSubjectEvaluation(subject).size());
+	}
+
+	@Test
+	public void testCountGivenLoan() {
+		String ip = "1.1.1.1";
+		Date date = new Date();
+		debtsDAO.createDebt(evaluationDAO.createEvaluation(subject, date ,
+				1000d, 5, 1d, ip, 0d));
+		debtsDAO.createDebt(evaluationDAO.createEvaluation(subject, date,
+				2000d, 5, 1d, ip, 0d));
+
+		Date from = DateUtils.getDateDayStart(date);
+		Date till = DateUtils.getDateDayEnd(date);;
+		assertEquals(2, evaluationDAO.countGivenLoan(ip, from, till)
+				.longValue());
 	}
 
 }

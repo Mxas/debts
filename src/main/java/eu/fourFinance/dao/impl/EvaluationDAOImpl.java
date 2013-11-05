@@ -50,4 +50,17 @@ public class EvaluationDAOImpl implements EvaluationDAO {
 		return q.getResultList();
 	}
 
+	@Override
+	public Long countGivenLoan(String requestIp, Date from, Date till) {
+
+		return em
+				.createQuery(
+						"select count(e) from Evaluation e "
+								+ "where exists(select d from Debts d where d.evaluation = e)"
+								+ " and e.requestIP = :requestIP and e.date >= :from and e.date <= :till",
+						Long.class).setParameter("requestIP", requestIp)
+				.setParameter("from", from).setParameter("till", till)
+				.getSingleResult();
+	}
+
 }

@@ -11,7 +11,7 @@ public class DateUtils {
      * @param date
      * @return
      */
-    public Date getDateDayStart(Date date) {
+    public static Date getDateDayStart(Date date) {
         Calendar c = Calendar.getInstance();
         c.setTime(new Date(date.getTime()));
         c.set(Calendar.HOUR_OF_DAY, 0);
@@ -27,7 +27,7 @@ public class DateUtils {
      * @param date
      * @return
      */
-    public Date getDateDayEnd(Date date) {
+    public static Date getDateDayEnd(Date date) {
         Calendar c = Calendar.getInstance();
         c.setTime(new Date(date.getTime()));
         c.set(Calendar.HOUR_OF_DAY, 23);
