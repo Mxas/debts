@@ -1,0 +1,61 @@
+<!doctype html>
+
+<html lang="en" ng-app="loan">
+<head>
+    <meta charset="utf-8">
+    <title>Loans</title>
+    <link rel="stylesheet" href="resources/css/bootstrap.css"/>
+    <link rel="stylesheet" href="resources/css/toastr.css"/>
+    <link rel="stylesheet" href="resources/css/added.css"/>
+</head>
+<body>
+
+<div class="container allpage">
+
+    <div class="masthead">
+        <h3 class="muted">Mindaugas loan app</h3>
+        <div class="navbar" ng-controller="HeaderController">
+            <div class="navbar-inner">
+                <div class="container">
+                    <ul class="nav">
+                        <li ng-class="{ active: isActive('/home')}"><a href="#/home">Home</a></li>
+                        <li ng-class="{ active: isActive('/new')}"><a href="#/new">New loan</a></li>
+                        <li ng-class="{ active: isActive('/my')}"><a href="#/my">My loans</a></li>
+                        <li ng-class="{ active: isActive('/contact')}"><a href="#/contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div><!-- /.navbar -->
+    </div>
+
+
+    <hr class="" />
+    <div ng-view>
+    
+     
+    </div>
+    <hr class="" />
+    <div class="footer">
+        <p>&copy; Loans MK 2013</p>
+    </div>
+
+</div>
+
+
+<script src="resources/js/lib/jquery-1.9.1.js"></script>
+<script src="resources/js/lib/bootstrap.js"></script>
+<script src="resources/js/lib/angular.js"></script>
+<script src="resources/js/lib/angular-resource.js"></script>
+<script src="resources/js/lib/toastr.js"></script>
+<script src="resources/js/app.js"></script>
+<script src="resources/js/controllers/HeaderController.js"></script>
+<script src="resources/js/controllers/HomeController.js"></script>
+<script src="resources/js/controllers/NewLoanController.js"></script>
+<script src="resources/js/controllers/MyLoansController.js"></script>
+<script src="resources/js/mdules/directives.js"></script>
+<script src="resources/js/mdules/filters.js"></script>
+<script src="resources/js/mdules/services.js"></script>
+
+</body>
+</html>
+

@@ -142,7 +142,7 @@
 
     </dependencies>
     <build>
-        <finalName>debts-samples</finalName>
+        <finalName>loan</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
