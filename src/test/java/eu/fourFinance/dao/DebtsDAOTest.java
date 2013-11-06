@@ -15,7 +15,7 @@ import eu.fourFinance.BaseTest;
 import eu.fourFinance.model.Debts;
 import eu.fourFinance.model.Evaluation;
 import eu.fourFinance.model.Subject;
-import eu.fourFinance.testsuites.IntegrationTests;
+import eu.fourFinance.testsuites.categories.IntegrationTests;
 
 @Category(IntegrationTests.class)
 public class DebtsDAOTest extends BaseTest {

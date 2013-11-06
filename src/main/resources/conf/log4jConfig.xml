@@ -28,10 +28,6 @@
     </appender>
 
 
-    <category name="org.apache.cxf">
-        <priority value="error" />
-        <appender-ref ref="STDOUT" />
-    </category>
 
 
     <root>

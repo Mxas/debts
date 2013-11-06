@@ -18,61 +18,57 @@ import eu.fourFinance.utils.DateUtils;
 @Service
 public class EvaluationServiceImpl implements EvaluationService {
 
-	@Autowired
-	private EvaluationDAO evaluationDAO;
+    @Autowired
+    private EvaluationDAO evaluationDAO;
 
-	@Override
-	public List<String> evaluateRisk(Evaluation evaluation) {
+    @Override
+    public List<String> evaluateRisk(Evaluation evaluation) {
 
-		Assert.notNull(evaluation);
-		Double loan = evaluation.getDebt();
-		Date date = evaluation.getDate();
-		String requestIp = evaluation.getRequestIP();
-		Assert.notNull(loan);
-		Assert.notNull(date);
-		Assert.notNull(requestIp);
+        Assert.notNull(evaluation);
+        Double loan = evaluation.getDebt();
+        Date date = evaluation.getDate();
+        String requestIp = evaluation.getRequestIP();
+        Assert.notNull(loan);
+        Assert.notNull(date);
+        Assert.notNull(requestIp);
 
-		List<String> messages = performEvaluation(loan, date, requestIp);
+        List<String> messages = performEvaluation(loan, date, requestIp);
 
-		if (messages.isEmpty()) {
-			evaluation
-					.setCalculatedCoef((double) EvaluationService.ACCEPTABLE_COEF);
-		} else {
-			evaluation.setCalculatedCoef(0d);
-		}
+        if (messages.isEmpty()) {
+            evaluation.setCalculatedCoef((double) EvaluationService.ACCEPTABLE_COEF);
+        } else {
+            evaluation.setCalculatedCoef(0d);
+        }
 
-		return messages;
-	}
+        return messages;
+    }
 
-	private List<String> performEvaluation(Double loan, Date date,
-			String requestIp) {
-		
-		List<String> result = new ArrayList<String>();
+    private List<String> performEvaluation(Double loan, Date date, String requestIp) {
 
-		if (MAX_LOAN < loan) {
-			result.add(MSG_TOO_BIG_LOAN);
-		}
-		if (loan < MIN_LOAN) {
-			result.add(MSG_TOO_SMALL_LOAN);
-		}
+        List<String> result = new ArrayList<String>();
 
-		// evaluate time
-		if (MAX_LOAN == loan) {
-			Calendar calendar = GregorianCalendar.getInstance();
-			calendar.setTime(date);
-			int hour = calendar.get(Calendar.HOUR_OF_DAY);
-			if (hour < 6) {
-				result.add(MSG_MAX_LOAN_AND_TIME);
-			}
-		}
+        if (MAX_LOAN < loan) {
+            result.add(MSG_TOO_BIG_LOAN);
+        }
+        if (loan < MIN_LOAN) {
+            result.add(MSG_TOO_SMALL_LOAN);
+        }
 
-		// reached max applications (e.g. 3) per day from a single IP.
-		if (MAX_APPLICATIONS_PER_DAY <= evaluationDAO.countGivenLoan(requestIp,
-				DateUtils.getDateDayStart(date), DateUtils.getDateDayEnd(date))
-				.longValue()) {
-			result.add(MSG_MAX_APPLICATION_FROM_IP_PER_DAY);
-		}
-		return result;
-	}
+        // evaluate time
+        if (loan >= MAX_LOAN) {
+            Calendar calendar = GregorianCalendar.getInstance();
+            calendar.setTime(date);
+            int hour = calendar.get(Calendar.HOUR_OF_DAY);
+            if (hour < 6) {
+                result.add(MSG_MAX_LOAN_AND_TIME);
+            }
+        }
+
+        // reached max applications (e.g. 3) per day from a single IP.
+        if (MAX_APPLICATIONS_PER_DAY <= evaluationDAO.countGivenLoan(requestIp, DateUtils.getDateDayStart(date), DateUtils.getDateDayEnd(date)).longValue()) {
+            result.add(MSG_MAX_APPLICATION_FROM_IP_PER_DAY);
+        }
+        return result;
+    }
 
 }

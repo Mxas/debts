@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import eu.fourFinance.BaseTest;
 import eu.fourFinance.model.Subject;
-import eu.fourFinance.testsuites.IntegrationTests;
+import eu.fourFinance.testsuites.categories.IntegrationTests;
 
 @Category(IntegrationTests.class)
 public class SubjectDAOTest extends BaseTest {

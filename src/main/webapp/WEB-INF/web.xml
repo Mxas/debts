@@ -41,8 +41,11 @@
     
     <servlet>
         <servlet-name>test</servlet-name>
-        <servlet-class>
-            org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:conf/beans/main-beans.xml</param-value>
+        </init-param>        
         <load-on-startup>1</load-on-startup>
     </servlet>
     
@@ -53,8 +56,8 @@
     
 
 
-    <welcome-file-list>
-        <welcome-file>/WEB-INF/index.jsp</welcome-file>
-    </welcome-file-list>
+     <welcome-file-list>
+        <welcome-file>index.htmml</welcome-file>
+    </welcome-file-list> 
 
 </web-app>
