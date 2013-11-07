@@ -3,10 +3,15 @@
 /**
  * @constructor
  */
-var NewLoanController = function($scope, $location) {
+var NewLoanController = function($scope, $http) {
 
 
-  alert(2);
+    $scope.fetchInfo = function() {
+        $http.get('cars/carlist.json').success(function(carList){
+            $scope.cars = carList;
+        });
+    }
+
 
 
 };

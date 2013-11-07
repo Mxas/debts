@@ -1,4 +1,27 @@
 
+<div class="alert alert-error" ng-show="error">{{errorMessage}}</div>
+<form class="form-horizontal">
+
+	<div class="control-group">
+		<label class="control-label" for="subject_code">Subject code</label>
+
+		<div class="controls">
+			<input type="text" id="subject_code" ng-model="subject.code"
+				placeholder="Subject code" required min="2">
+		</div>
+	</div>
+	
+
+	<div class="control-group">
+		<label class="control-label" for="debt_loan">Loan</label>
+
+		<div class="controls">
 
 
- <h2 class="muted">naujas!</h2>
+			<input class="span3" type="text" id="debt_loan"
+				ng-model="debt.loan" placeholder="Loan" required min="1">
+			<span class="add-on">LTL</span>
+		</div>
+	</div>
+
+</form>

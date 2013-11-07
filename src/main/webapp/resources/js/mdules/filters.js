@@ -2,7 +2,7 @@
 
 /* Filters */
 
-var AppFilters = angular.module('loan.filters', []);
+var AppFilters = angular.module('LoanWebApp.filters', []);
 
 AppFilters.filter('interpolate', ['version', function (version) {
     return function (text) {

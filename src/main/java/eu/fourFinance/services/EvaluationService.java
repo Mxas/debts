@@ -6,6 +6,8 @@ import eu.fourFinance.model.Evaluation;
 
 public interface EvaluationService {
 
+	public static final int LOAN_RATE = 15;
+	
 	public static final Double MAX_LOAN = 5000d;
 	public static final Double MIN_LOAN = 200d;
 	public static final int ACCEPTABLE_COEF = 1;

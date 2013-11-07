@@ -2,7 +2,7 @@
 
 /* Directives */
 
-var AppDirectives = angular.module('loan.directives', []);
+var AppDirectives = angular.module('LoanWebApp.directives', []);
 
 AppDirectives.directive('appVersion', ['version', function (version) {
     return function (scope, elm, attrs) {

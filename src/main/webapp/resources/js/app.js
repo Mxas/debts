@@ -1,8 +1,8 @@
 'use strict';
 
-var loan = {};
+var LoanWebApp = {};
 
-var App = angular.module('loan', ['loan.filters', 'loan.services', 'loan.directives']);
+var App = angular.module('LoanWebApp', ['LoanWebApp.filters', 'LoanWebApp.services', 'LoanWebApp.directives']);
 
 // Declare app level module which depends on filters, and services
 App.config(['$routeProvider', function ($routeProvider) {

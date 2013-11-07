@@ -3,10 +3,15 @@
 /**
  * @constructor
  */
-var HomeController = function($scope, $location) {
+var HomeController = function($scope, $http) {
 
 
-  alert(1);
+    $scope.fetchInfo = function() {
+        $http.get('mvc/getLonaInterestRate.mvc').success(function(rate){
+            $scope.rate = rate;
+        });
+    };
 
+    $scope.fetchInfo();
 
 };
