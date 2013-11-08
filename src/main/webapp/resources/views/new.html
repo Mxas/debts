@@ -1,27 +1,51 @@
 
-<div class="alert alert-error" ng-show="error">{{errorMessage}}</div>
+<div class="alert alert-error" ng-show="evaluationCommand.messages.length > 0 && !evaluationCommand.success" ng-repeat="message in evaluationCommand.messages">{{message}}</div>
+<div class="alert alert-info" ng-show="evaluationCommand.messages.length > 0" ng-repeat="message in evaluationCommand.messages">{{message}}</div>
+
+
 <form class="form-horizontal">
 
 	<div class="control-group">
 		<label class="control-label" for="subject_code">Subject code</label>
 
 		<div class="controls">
-			<input type="text" id="subject_code" ng-model="subject.code"
+			<input type="text" id="subject_code" ng-model="evaluationCommand.code"
 				placeholder="Subject code" required min="2">
 		</div>
 	</div>
 	
 
 	<div class="control-group">
-		<label class="control-label" for="debt_loan">Loan</label>
+		<label class="control-label" for="debt_loan">Desired amount</label>
 
 		<div class="controls">
 
 
-			<input class="span3" type="text" id="debt_loan"
-				ng-model="debt.loan" placeholder="Loan" required min="1">
-			<span class="add-on">LTL</span>
+			<input class="span3" type="number" id="debt_loan"
+				ng-model="evaluationCommand.loan" placeholder="Loan" required min="200" max="5000">
+			<span class="add-on"> LTL</span>
 		</div>
 	</div>
+    
+	<div class="control-group">
+		<label class="control-label" for="debt_term">Term</label>
+
+		<div class="controls">
+
+
+			<input class="span3" type="number" id="debt_term"
+				ng-model="evaluationCommand.term" placeholder="Term" required min="8" max="100">
+			<span class="add-on"> weeks</span>
+		</div>
+	</div>
+
+
+    <div class="control-group">
+        <hr />
+        <div class="controls">
+            <button type="button" class="btn btn-primary" ng-disabled="!evaluationCommand.code || !evaluationCommand.loan || !evaluationCommand.term" ng-click="addNew(evaluationCommand);">Evaluate</button>
+            <button type="button" class="btn" ng-click="resetForm()">Reset</button>
+        </div>
+    </div>
 
 </form>

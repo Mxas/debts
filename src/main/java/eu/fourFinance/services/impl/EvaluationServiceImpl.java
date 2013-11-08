@@ -12,6 +12,7 @@ import org.springframework.util.Assert;
 
 import eu.fourFinance.dao.EvaluationDAO;
 import eu.fourFinance.model.Evaluation;
+import eu.fourFinance.model.Subject;
 import eu.fourFinance.services.EvaluationService;
 import eu.fourFinance.utils.DateUtils;
 
@@ -28,11 +29,15 @@ public class EvaluationServiceImpl implements EvaluationService {
         Double loan = evaluation.getDebt();
         Date date = evaluation.getDate();
         String requestIp = evaluation.getRequestIP();
+
         Assert.notNull(loan);
         Assert.notNull(date);
         Assert.notNull(requestIp);
+        Assert.notNull(evaluation.getTerm());
 
-        List<String> messages = performEvaluation(loan, date, requestIp);
+        int term = evaluation.getTerm().intValue();
+
+        List<String> messages = performEvaluation(loan, date, requestIp, term);
 
         if (messages.isEmpty()) {
             evaluation.setCalculatedCoef((double) EvaluationService.ACCEPTABLE_COEF);
@@ -43,7 +48,7 @@ public class EvaluationServiceImpl implements EvaluationService {
         return messages;
     }
 
-    private List<String> performEvaluation(Double loan, Date date, String requestIp) {
+    private List<String> performEvaluation(Double loan, Date date, String requestIp, int term) {
 
         List<String> result = new ArrayList<String>();
 
@@ -54,6 +59,12 @@ public class EvaluationServiceImpl implements EvaluationService {
             result.add(MSG_TOO_SMALL_LOAN);
         }
 
+        if (MAX_TERM < term) {
+            result.add(MSG_TOO_LONG_TERM);
+        }
+        if (term < MIN_TERM) {
+            result.add(MSG_TOO_SHORT_TERM);
+        }
         // evaluate time
         if (loan >= MAX_LOAN) {
             Calendar calendar = GregorianCalendar.getInstance();
@@ -69,6 +80,17 @@ public class EvaluationServiceImpl implements EvaluationService {
             result.add(MSG_MAX_APPLICATION_FROM_IP_PER_DAY);
         }
         return result;
+    }
+
+    @Override
+    public Evaluation createEvaluation(Subject subject, Date date, Double debt, Integer term, String requestIP) {
+        return evaluationDAO.createEvaluation(subject, date, debt, term, new Double(LOAN_RATE / 100), requestIP, 0d);
+    }
+
+    @Override
+    public void calcLoanDetails(Evaluation evaluation) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

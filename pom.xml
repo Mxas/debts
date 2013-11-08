@@ -11,7 +11,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.version>3.2.4.RELEASE</spring.version>
+        <spring.version>3.1.2.RELEASE</spring.version>
         <hibernate.version>4.2.0.Final</hibernate.version>
         <hibernateEM.version>3.3.2.GA</hibernateEM.version>
     </properties>
@@ -107,6 +107,18 @@
             <version>2.5</version>
             <scope>provided</scope>
         </dependency>
+        
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>1.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.12</version>
+        </dependency>        
         <!-- -->
 
 

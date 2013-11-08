@@ -29,7 +29,7 @@ public class SubjectDAOImpl implements SubjectDAO {
         if (list.size() > 1)
             throw new IllegalArgumentException("Result must contain one row....");
         if (list.isEmpty()) {
-            return createSubject(code);
+            return null;
         } else
             return list.get(0);
     }

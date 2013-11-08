@@ -43,9 +43,9 @@ public class SubjectDAOTest extends BaseTest {
     public void testGetSubject() {
         String code = "bb";
         Subject s = subjectDAO.getSubject(code);
-        assertEquals(code, s.getCode());
+        Assert.assertNull(s);
+        subjectDAO.createSubject(code);
         s = subjectDAO.getSubject(code);
         assertEquals(code, s.getCode());
     }
-
 }
