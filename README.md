@@ -30,15 +30,18 @@ What gets evaluated
 - How simple it is to run the application (embedded DB/embedded container)
 
 
-#### 2. Build and Run ==========================
+#### 2. Build and Run
 
 > git clone https://github.com/Mxas/debts.git
+
 > cd debts
+
 > mvn clean install
+
 > mvn tomcat:run
 
 
-#### 3. On-line ==========================
+#### 3. On-line 
 
 http://loan-a.mxas.cloudbees.net/
 
