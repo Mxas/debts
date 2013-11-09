@@ -45,6 +45,12 @@ public class Evaluation {
 	@Column(nullable = false)
 	private Double calculatedCoef;
 
+	private Double periodicalPay;
+
+	private Double totalPay;
+
+	private Date lastPayDate;
+	
 	public Subject getSubject() {
 		return subject;
 	}
@@ -107,5 +113,29 @@ public class Evaluation {
 
 	public void setCalculatedCoef(Double calculatedCoef) {
 		this.calculatedCoef = calculatedCoef;
+	}
+
+	public Double getPeriodicalPay() {
+		return periodicalPay;
+	}
+
+	public void setPeriodicalPay(Double periodicalPay) {
+		this.periodicalPay = periodicalPay;
+	}
+
+	public Double getTotalPay() {
+		return totalPay;
+	}
+
+	public void setTotalPay(Double totalPay) {
+		this.totalPay = totalPay;
+	}
+
+	public Date getLastPayDate() {
+		return lastPayDate;
+	}
+
+	public void setLastPayDate(Date lastPayDate) {
+		this.lastPayDate = lastPayDate;
 	}
 }

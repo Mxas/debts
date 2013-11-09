@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
@@ -16,7 +17,7 @@ import eu.fourFinance.model.Evaluation;
 import eu.fourFinance.model.Subject;
 
 @Repository
-@Transactional
+@Transactional(propagation = Propagation.MANDATORY)
 public class EvaluationDAOImpl implements EvaluationDAO {
 
 	@PersistenceContext
@@ -61,6 +62,12 @@ public class EvaluationDAOImpl implements EvaluationDAO {
 						Long.class).setParameter("requestIP", requestIp)
 				.setParameter("from", from).setParameter("till", till)
 				.getSingleResult();
+	}
+
+	@Override
+	public Evaluation getEvaluation(Long evaluationId) {
+		Assert.notNull(evaluationId);
+		return em.find(Evaluation.class, evaluationId);
 	}
 
 }

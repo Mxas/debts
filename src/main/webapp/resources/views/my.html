@@ -1,4 +1,38 @@
 
 
 
- <h2 class="muted">my!</h2>
+<h3 ng-show="evaluationCommand.successfullEvaluation.length > 0">Loans</h3>
+<table class="table table-bordered table-striped" ng-show="evaluationCommand.successfullEvaluation.length > 0">
+	<thead>
+		<tr>
+			<th style="text-align: center; width: 25px;">Id</th>
+ 			<th style="text-align: center;">Client</th>
+ 			<th style="text-align: center;">Loan, LTL</th>
+ 			<th style="text-align: center;">Rate, %</th>
+ 			<th style="text-align: center;">Term, (Weeks)</th>
+ 			<th style="text-align: center;">Total pay, LTL</th>
+ 			<th style="text-align: center;">Weekly pay, LTL</th>
+ 			<th style="text-align: center;">Last Pay Date</th>
+ 			<th style="text-align: center;">Is active</th>
+ 			<th style="text-align: center;">Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="item in evaluationCommand.successfullEvaluation " >
+			<td style="text-align: center;">{{item.id}}</td>
+			<td style="text-align: left;">{{item.code}}</td>
+			<td style="text-align: center;">{{item.loan}}</td>
+			<td style="text-align: center;">{{item.rate}}</td>
+			<td style="text-align: center;">{{item.term}}</td>
+			<td style="text-align: center;">{{item.totalPay}}</td>
+			<td style="text-align: center;">{{item.periodicalPay}}</td>
+			<td style="text-align: center;">{{item.lastPayDate}}</td>
+			<td style="text-align: center;">{{item.active}}</td>
+				
+			<td style="width: 100px; text-align: center;">
+				<button class="btn btn-mini btn-success" ng-click="extend(item.id);"
+				 ng-disabled="!item.active" >Extend</button>
+			</td>
+		</tr>
+	</tbody>
+</table>

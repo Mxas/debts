@@ -18,14 +18,14 @@ public class LangServiceImpl implements LangService {
 
     private Locale defaultLocale = new Locale("en");
 
-    public String get(String key) {
+    public String get(String key, Object...args) {
         String result = null;
         if (StringUtils.isEmpty(key)) {
             return null;
         }
 
         try {
-            result = messageSource.getMessage(key, null, defaultLocale);
+            result = messageSource.getMessage(key, args, defaultLocale);
         } catch (NoSuchMessageException nsmEx) {
             result = key;
         }

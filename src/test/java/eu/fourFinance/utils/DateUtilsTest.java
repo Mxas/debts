@@ -54,11 +54,4 @@ public class DateUtilsTest {
 
     }
 
-/*    @Test
-    public void testAddHoursToCurrentDay() {
-
-        Calendar c = Calendar.getInstance();
-        c.setTime(add(1));
-        
-    }*/
 }

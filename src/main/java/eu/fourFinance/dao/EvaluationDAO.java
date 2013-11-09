@@ -15,4 +15,6 @@ public interface EvaluationDAO {
 
 	public Long countGivenLoan(String requestIp, Date from,
 			Date till);
+
+	public Evaluation getEvaluation(Long evaluationId);
 }

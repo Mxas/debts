@@ -2,16 +2,28 @@ package eu.fourFinance.services;
 
 public interface LangService {
 
-    public static final String MSG_WRONG = "wrong";
-    public static final String MSG_TERM_EMPTY = "MSG_TERM_EMPTY";
-    public static final String MSG_LOAN_EMPTY = "MSG_LOAN_EMPTY";
-    public static final String MSG_IP_EMPTY = "MSG_IP_EMPTY";
-    
-    /**
-     * gets message
-     * 
-     * @param key
-     * @return
-     */
-    public String get(String key);
+	public static final String MSG_WRONG = "wrong";
+	public static final String MSG_TERM_EMPTY = "MSG_TERM_EMPTY";
+	public static final String MSG_LOAN_EMPTY = "MSG_LOAN_EMPTY";
+	public static final String MSG_IP_EMPTY = "MSG_IP_EMPTY";
+	public static final String MSG_SUCCESS_EVA = "MSG_SUCCESS_EVA";
+	public static final String MSG_INCORRECT_EVALUATION = "MSG_INCORRECT_EVALUATION";
+
+	public static final String MSG_TOO_BIG_LOAN = "MSG_TOO_BIG_LOAN";
+	public static final String MSG_TOO_SMALL_LOAN = "MSG_TOO_SMALL_LOAN";
+	public static final String MSG_MAX_LOAN_AND_TIME = "MSG_MAX_LOAN_AND_TIME";
+	public static final String MSG_MAX_APPLICATION_FROM_IP_PER_DAY = "MSG_MAX_APPLICATION_FROM_IP_PER_DAY";
+	public static final String MSG_TOO_LONG_TERM = "MSG_TOO_LONG_TERM";
+	public static final String MSG_TOO_SHORT_TERM = "MSG_TOO_LONG_TERM";
+
+	
+	
+	/**
+	 * gets message
+	 * 
+	 * @param key
+	 * @param args
+	 * @return
+	 */
+	public String get(String key, Object... args);
 }

@@ -3,7 +3,7 @@
 /**
  * @constructor
  */
-var NewLoanController = function($scope, $http) {
+var NewLoanController = function($scope, $http, $location) {
 
     $scope.evaluationCommand = {};
     $scope.error = false;
@@ -28,5 +28,18 @@ var NewLoanController = function($scope, $http) {
         }).error(function() {
             alert("Something goes wrong, please try later...");
         });
+    };
+
+    $scope.applay = function(evalId) {
+    	$scope.resetError();
+    	$http.get('mvc/applay.mvc/'+evalId).success(function(aaa) {
+    		if ("OK" === aaa){
+    			$location.path("/my");
+    		}else{
+    			alert(aaa);
+    		}  
+    	}).error(function() {
+    		alert("Something goes wrong, please try later...");
+    	});
     };
 };

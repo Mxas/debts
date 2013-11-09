@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -39,6 +40,9 @@ public class DebtsDAOTest extends BaseTest {
 		evaluation = evaluationDAO.createEvaluation(subject, new Date(), 2000d,
 				5, 1d, "a", 0d);
 		assertEquals(subject.getId(), evaluation.getSubject().getId());
+		evaluation.setLastPayDate(new Date());
+		evaluation.setTotalPay(100d);
+		evaluation.setPeriodicalPay(10d);
 	}
 
 	@Test
@@ -46,6 +50,7 @@ public class DebtsDAOTest extends BaseTest {
 		Debts debt = debtsDAO.createDebt(evaluation);
 
 		assertEquals(evaluation.getId(), debt.getEvaluation().getId());
+
 	}
 
 	@Test
@@ -53,11 +58,49 @@ public class DebtsDAOTest extends BaseTest {
 		Debts debt = debtsDAO.createDebt(evaluation);
 		Date extencionDate = date(1);
 		Double extencionRate = 1.5d;
+		Integer term = 55;
+		Double totalPay = 1000d;
+		Date date = date(5);
+		Double periodicPay = 555d;
+		;
 		Debts debtExt = debtsDAO.createDebtExtension(debt, extencionDate,
-				extencionRate);
-		assertEquals(extencionDate, debtExt.getExtencionDate());
-		assertEquals(extencionRate, debtExt.getExtencionRate());
+				extencionRate, term, totalPay, date, periodicPay);
+
+		assertEquals(extencionDate, debtExt.getLastPayDate());
+		assertEquals(extencionRate, debtExt.getRate());
+		assertEquals(term, debtExt.getTerm());
+		assertEquals(totalPay, debtExt.getTotalPay());
 		assertEquals(debt, debtExt.getExtencionOf());
+		assertEquals(evaluation, debtExt.getEvaluation());
+		assertEquals(periodicPay, debtExt.getPeriodicalPay());
+
+	}
+
+	@Test
+	public void testGetAll() {
+		Debts debt = debtsDAO.createDebt(evaluation);
+
+		List<Debts> debts = debtsDAO.getGivenDebts();
+		assertEquals(1, debts.size());
+		assertEquals(debt, debts.get(0));
+
+		debtsDAO.createDebt(evaluation);
+
+		assertEquals(2, debtsDAO.getGivenDebts().size());
+		Date extencionDate = date(1);
+		Double extencionRate = 1.5d;
+		Integer term = 55;
+		Double totalPay = 1000d;
+		Date date = date(5);
+		Double periodicPay = 55d;
+
+		debtsDAO.createDebtExtension(debt, extencionDate, extencionRate, term,
+				totalPay, date, periodicPay);
+
+		debtsDAO.createDebtExtension(debt, extencionDate, extencionRate, term,
+				totalPay, date, periodicPay);
+
+		assertEquals(4, debtsDAO.getGivenDebts().size());
 
 	}
 
@@ -65,7 +108,7 @@ public class DebtsDAOTest extends BaseTest {
 
 		Calendar c = Calendar.getInstance();
 		c.setTime(new Date());
-		c.add(Calendar.DATE, i);
+		c.add(Calendar.DAY_OF_YEAR, i);
 		return c.getTime();
 
 	}
