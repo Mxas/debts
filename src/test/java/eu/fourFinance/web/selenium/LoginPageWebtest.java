@@ -1,11 +1,16 @@
 package eu.fourFinance.web.selenium;
 
+import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+
+import eu.fourFinance.testsuites.categories.UnitTests;
+import eu.fourFinance.testsuites.categories.WebTests;
  
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
@@ -14,6 +19,8 @@ import static org.junit.Assert.fail;
  * Simple web test that just queries the login page through the controller.
  * @author Florian Hopf, Synyx GmbH & Co. KG, hopf@synyx.de
  */
+@Ignore
+@Category(WebTests.class)
 public class LoginPageWebtest {
  
     @Test

@@ -18,6 +18,7 @@ import eu.fourFinance.BaseTest;
 import eu.fourFinance.dao.DebtsDAO;
 import eu.fourFinance.dao.EvaluationDAO;
 import eu.fourFinance.dao.SubjectDAO;
+import eu.fourFinance.model.Debts;
 import eu.fourFinance.model.Evaluation;
 import eu.fourFinance.model.Subject;
 import eu.fourFinance.testsuites.categories.IntegrationTests;
@@ -36,6 +37,9 @@ public class EvaluationServiceTest extends BaseTest {
 
 	@Autowired
 	private DebtsDAO debtsDAO;
+
+	@Autowired
+	private DebtsService debtsService;
 
 	private static final String SUBJECT_CODE = "c";
 	private Subject subject;
@@ -253,11 +257,59 @@ public class EvaluationServiceTest extends BaseTest {
 		assertEquals(requestIP, s.getRequestIP());
 		assertEquals(calculatedCoef, s.getCalculatedCoef());
 		assertEquals(subject, s.getSubject());
-		assertEquals(subject, s.getSubject());
 		assertEquals(DateUtils.addWeeks(s.getDate(), term), s.getLastPayDate());
 
 		Assert.assertTrue(s.getPeriodicalPay() > 0);
 		Assert.assertTrue(s.getTotalPay() > 0);
 	}
 
+	@Test
+	public void testApplay() {
+
+		Date date = new Date();
+		Double debt = 1000d;
+		Double rate = new Double(EvaluationService.LOAN_RATE / 100d);
+		Integer term = 12;
+		String requestIP = "1";
+		Evaluation s = evaluationService.createEvaluation(subject, date, debt,
+				term, requestIP);
+		evaluationService.evaluateRisk(s);
+
+		evaluationService.calcLoanDetails(s);
+
+		Debts de = evaluationService.applay(s);
+
+		assertEquals(rate, de.getRate());
+		assertEquals(debt, de.getDebt());
+		assertEquals(term, de.getTerm());
+		assertEquals(subject, de.getEvaluation().getSubject());
+		assertEquals(DateUtils.addWeeks(de.getDate(), term), s.getLastPayDate());
+
+		Assert.assertTrue(de.getPeriodicalPay() > 0);
+		Assert.assertTrue(de.getTotalPay() > 0);
+	}
+
+	@Test
+	public void testGetAll() {
+
+		Debts de = createDebt();
+		createDebt();
+		createDebt();
+		Debts ext = debtsService.extendDebt(de);
+		debtsService.getDebt(ext.getId());
+
+		List<Debts> list = evaluationService.getGivenDebts();
+		assertEquals(4, list.size());
+	}
+
+	private Debts createDebt() {
+		Evaluation s = evaluationService.createEvaluation(subject, new Date(),
+				1000d, 12, "d");
+		evaluationService.evaluateRisk(s);
+
+		evaluationService.calcLoanDetails(s);
+
+		Debts de = evaluationService.applay(s);
+		return de;
+	}
 }

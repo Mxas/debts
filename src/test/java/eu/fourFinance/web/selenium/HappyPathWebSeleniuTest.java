@@ -3,6 +3,7 @@ package eu.fourFinance.web.selenium;
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.openqa.selenium.WebDriver;
@@ -13,13 +14,14 @@ import com.thoughtworks.selenium.Selenium;
 
 import eu.fourFinance.services.EvaluationService;
 import eu.fourFinance.testsuites.categories.UnitTests;
+import eu.fourFinance.testsuites.categories.WebTests;
 
-@Category(UnitTests.class)
+@Category(WebTests.class)
 public class HappyPathWebSeleniuTest {
 
 	private static final String DEFAULT_WAIT_PERIOD = "3000";
 	private Selenium selenium;
-	private WebDriver driver = new FirefoxDriver();
+	//private WebDriver driver = new FirefoxDriver();
 
 	@Before
 	public void setUp() throws Exception {
