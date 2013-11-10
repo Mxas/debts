@@ -9,7 +9,7 @@ public interface DebtsService {
 
 	public Debts getDebt(Long debtId);
 
-	public void extendDebt(Debts debt);
+	public Debts extendDebt(Debts debt);
 
 	public CalculationsResult claculate(Double rate, Double loan, Integer term, Date date);
 

@@ -26,7 +26,7 @@ public class DebtsServiceImpl implements DebtsService {
 	}
 
 	@Override
-	public void extendDebt(Debts debt) {
+	public Debts extendDebt(Debts debt) {
 		Integer term = debt.getTerm() + 1;
 		Double extencionRate = round(debt.getRate() * 1.5);
 		Date date = new Date(System.currentTimeMillis());
@@ -34,7 +34,7 @@ public class DebtsServiceImpl implements DebtsService {
 		CalculationsResult result = claculate(extencionRate, debt.getDebt(),
 				term, date);
 
-		debtsDAO.createDebtExtension(debt, result.getEndDate(), extencionRate,
+		return debtsDAO.createDebtExtension(debt, result.getEndDate(), extencionRate,
 				term, result.getTotalPay(), date, result.getPeriodicalPay());
 
 	}

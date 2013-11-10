@@ -8,9 +8,12 @@ import static eu.fourFinance.services.LangService.MSG_WRONG;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,28 +52,34 @@ public class LoanController {
 		return new Integer(EvaluationService.LOAN_RATE).toString();
 	}
 
-	@RequestMapping(value = "/evaluate.mvc", method = RequestMethod.POST)
+	@RequestMapping(value = "/evaluate.mvc", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
 	EvaluationCommand evaluate(@RequestBody EvaluationCommand command,
-			@Value("#{request.remoteAddr}") StringBuffer ip) {
-
+			@Value("#{request.remoteAddr}") StringBuffer ip,
+			HttpServletResponse response) {
+		response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+		response.setCharacterEncoding("UTF-8");
 		if (command == null) {
 			return new EvaluationCommand(langService.get(MSG_WRONG));
 		} else {
 			Double debt = command.getLoan();
-			if (debt == null) {
+			if (debt == null || debt.doubleValue() <= 0) {
 				command.setSuccess(false);
 				command.putMessage(langService.get(MSG_LOAN_EMPTY));
 			}
 			Integer term = command.getTerm();
-			if (debt == null) {
+			if (term == null) {
 				command.setSuccess(false);
-				command.putMessage(langService.get(MSG_IP_EMPTY));
+				command.putMessage(langService.get(MSG_TERM_EMPTY));
 			}
 			String requestIP = ip.toString();
 			if (StringUtils.isBlank(requestIP)) {
 				command.setSuccess(false);
-				command.putMessage(langService.get(MSG_TERM_EMPTY));
+				command.putMessage(langService.get(MSG_IP_EMPTY));
+			}
+			if (command.getMessages() != null
+					&& !command.getMessages().isEmpty()) {
+				return command;
 			}
 			Subject subject = subjectService.getSubject(command.getCode());
 

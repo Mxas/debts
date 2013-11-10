@@ -38,7 +38,11 @@ What gets evaluated
 
 > mvn clean install
 
-> mvn tomcat:run
+> mvn verify -Pintegration-test
+
+> mvn verify -Pweb-integration-test 
+
+> mvn jetty:run
 
 
 #### 3. On-line 
