@@ -31,8 +31,12 @@
 				
 			<td style="width: 100px; text-align: center;">
 				<button class="btn btn-mini btn-success" ng-click="extend(item.id);"
-				 ng-disabled="!item.active" id="extendId">Extend</button>
+				 ng-disabled="!item.active" id="extendId" ng-show="item.active"  >Extend *</button>
 			</td>
 		</tr>
 	</tbody>
 </table>
+
+<span ng-show="evaluationCommand.successfullEvaluation.length > 0">* Extending 1 week loan term, the current interest rate are increased 1/2 time</span>
+
+<br>

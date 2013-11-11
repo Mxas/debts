@@ -51,5 +51,35 @@ http://localhost:8080/
 
 http://loan-a.mxas.cloudbees.net/
 
- build management
+ build management and CI
 https://grandcentral.cloudbees.com/
+
+#### 4. Loan's
+
+- Max possible amount: 5000 ;
+- Min amount: 200 ;
+- Max term: 100 ;
+- Min term: 8 ;
+- Client is mandatory.
+
+#### 5. Testing
+
+- Unit Tests. Runs almost after each maven goal. It's includes fast tests, which do not need application context and do not need DB.
+- Integration Tests. Runs explicitly in maven command line including profile name in integration-test phase. For these tests it is necessary to ran with context and have DB (test cases runs in "Rollback" mode, it flush DB transaction, but do not commit's data to DB).
+- Web Integration Tests. Runs also explicitly in maven command line including profile name in integration-test phase. These test cases runs when application is deployed on server. In test environment must be installed Mozilla Firefox  browser.
+
+#### 5. Architecture
+
+1. DB + DB model (Entities);
+2. DAO
+3. Logic services (model)
+4. Controllers
+5. View (html+JS)
+
+#### 5. Technologies
+
+- Spring 3
+- Hibernate
+- AngularJS
+- Selenium
+- Maven, JUnit, H2, tomcat/jetty, cpsuite and many others...

@@ -9,8 +9,8 @@
 		<label class="control-label" for="subject_code">Client</label>
 
 		<div class="controls">
-			<input type="text" id="subject_code" ng-model="evaluationCommand.code"
-				placeholder="Client" required min="2" name="code">
+			<input type="text" id="subject_code" ng-model="evaluationCommand.code" placeholder="Client" required  name="code" ng-maxlength="200">
+            <span class="error" ng-show="!evaluationCommand.code">Required!</span>
 		</div>
 	</div>
 	
@@ -23,7 +23,8 @@
 
 			<input class="span3" type="number" id="debt_loan"
 				ng-model="evaluationCommand.loan" placeholder="Loan" required min="200" max="5000" name="loan">
-			<span class="add-on"> LTL</span>
+			<span class="add-on"> LTL (200 - 5000)</span>
+            <span class="error" ng-show="!evaluationCommand.loan">Required!</span>
 		</div>
 	</div>
     
@@ -35,7 +36,8 @@
 
 			<input class="span3" type="number" id="debt_term"
 				ng-model="evaluationCommand.term" placeholder="Term" required min="8" max="100" name="term">
-			<span class="add-on"> weeks</span>
+			<span class="add-on"> weeks (8 - 100)</span>
+            <span class="error" ng-show="!evaluationCommand.term">Required!</span>
 		</div>
 	</div>
 

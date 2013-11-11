@@ -1,12 +1,51 @@
 <!doctype html>
 
-<html lang="en" ng-app="LoanWebApp">
+<html lang="en"  xmlns:ng="http://angularjs.org" id="ng-app" ng-app="LoanWebApp">
 <head>
     <meta charset="utf-8">
     <title>Loans</title>
     <link rel="stylesheet" href="resources/css/bootstrap.css"/>
     <link rel="stylesheet" href="resources/css/toastr.css"/>
     <link rel="stylesheet" href="resources/css/added.css"/>
+
+   <!--[if lte IE 8]>
+      <script src="resources/js/lib/json2.js"></script>
+    <![endif]--> 
+       
+    <!--[if lte IE 8]>
+      <script>
+        document.createElement('ng-include');
+        document.createElement('ng-pluralize');
+        document.createElement('ng-view');
+ 
+        // Optionally these for CSS
+        document.createElement('ng:include');
+        document.createElement('ng:pluralize');
+        document.createElement('ng:view');
+      </script>
+    <![endif]--> 
+    
+        <!--[if lte IE 8]>
+      <script>
+        // needed to make ng-include parse properly
+        document.createElement('ng-include');
+ 
+        // needed to enable CSS reference
+        document.createElement('ng:view');
+      </script>
+    <![endif]-->
+    <style>
+      ng\:view {
+        display: block;
+        border: 1px solid red;
+      }
+ 
+      ng-include {
+        display: block;
+        border: 1px solid blue;
+      }
+    </style>  
+     
 </head>
 <body>
 
