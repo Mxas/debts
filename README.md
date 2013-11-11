@@ -45,7 +45,7 @@ What gets evaluated
 > mvn jetty:run
 
 Check in browser 
-http://http://localhost:8080/
+http://localhost:8080/
 
 #### 3. On-line 
 
