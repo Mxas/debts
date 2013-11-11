@@ -10,7 +10,7 @@
 
 		<div class="controls">
 			<input type="text" id="subject_code" ng-model="evaluationCommand.code"
-				placeholder="Client code" required min="2" name="code">
+				placeholder="Client" required min="2" name="code">
 		</div>
 	</div>
 	
@@ -22,7 +22,7 @@
 
 
 			<input class="span3" type="number" id="debt_loan"
-				ng-model="evaluationCommand.loan" placeholder="Loan" required min="200" max="5000">
+				ng-model="evaluationCommand.loan" placeholder="Loan" required min="200" max="5000" name="loan">
 			<span class="add-on"> LTL</span>
 		</div>
 	</div>
@@ -34,7 +34,7 @@
 
 
 			<input class="span3" type="number" id="debt_term"
-				ng-model="evaluationCommand.term" placeholder="Term" required min="8" max="100">
+				ng-model="evaluationCommand.term" placeholder="Term" required min="8" max="100" name="term">
 			<span class="add-on"> weeks</span>
 		</div>
 	</div>
@@ -43,7 +43,7 @@
     <div class="control-group">
         <hr />
         <div class="controls">
-            <button type="button" class="btn btn-primary" ng-disabled="!evaluationCommand.code || !evaluationCommand.loan || !evaluationCommand.term" ng-click="addNew(evaluationCommand);">Evaluate</button>
+            <button type="button" class="btn btn-primary" ng-disabled="!evaluationCommand.code || !evaluationCommand.loan || !evaluationCommand.term" ng-click="addNew(evaluationCommand);" name="go">Evaluate</button>
             <button type="button" class="btn" ng-click="resetForm()">Reset</button>
         </div>
     </div>
@@ -74,12 +74,12 @@
 			<td>{{item.loan}}</td>
 			<td>{{item.rate}}</td>
 			<td>{{item.term}}</td>
-			<td>{{item.totalPay}}</td>
+			<td><span name="totalPay" >{{item.totalPay}}</span></td>
 			<td>{{item.periodicalPay}}</td>
 			<td>{{item.lastPayDate}}</td>
 				
 			<td style="width: 100px; text-align: center;">
-				<button class="btn btn-mini btn-success" ng-click="applay(item.id);">Apply for Loan</button>
+				<button class="btn btn-mini btn-success" ng-click="applay(item.id);" id="applayId">Apply for Loan</button>
 			</td>
 		</tr>
 	</tbody>

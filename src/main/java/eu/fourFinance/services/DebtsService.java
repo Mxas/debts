@@ -5,12 +5,42 @@ import java.util.Date;
 import eu.fourFinance.model.Debts;
 import eu.fourFinance.services.impl.DebtsServiceImpl.CalculationsResult;
 
+/**
+ * 
+ * Naudojama: for loans(debts) 
+ *
+ * @author MindaugasK
+ * @since 2013.11.11
+ *
+ */
 public interface DebtsService {
 
-	public Debts getDebt(Long debtId);
+    /**
+     * return by id
+     * 
+     * @param debtId
+     * @return
+     */
+    public Debts getDebt(Long debtId);
 
-	public Debts extendDebt(Debts debt);
+    /**
+     * extends depts(loan)
+     * 
+     * @param debt
+     * @return
+     */
+    public Debts extendDebt(Debts debt);
 
-	public CalculationsResult claculate(Double rate, Double loan, Integer term, Date date);
+    /**
+     * 
+     * calculates loan information
+     * 
+     * @param rate
+     * @param loan
+     * @param term
+     * @param date
+     * @return
+     */
+    public CalculationsResult claculate(Double rate, Double loan, Integer term, Date date);
 
 }

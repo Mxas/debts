@@ -5,6 +5,7 @@ import eu.fourFinance.model.Subject;
 public interface SubjectDAO {
 
     /**
+     * gets subject by code
      * 
      * @param code
      * @return

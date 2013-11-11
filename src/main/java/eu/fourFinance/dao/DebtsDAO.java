@@ -8,13 +8,40 @@ import eu.fourFinance.model.Evaluation;
 
 public interface DebtsDAO {
 
-	public Debts createDebt(Evaluation evaluation);
+    /**
+     * confirms loan taiking
+     * 
+     * @param evaluation
+     * @return
+     */
+    public Debts createDebt(Evaluation evaluation);
 
-	public Debts createDebtExtension(Debts old, Date lastPayDate,
-			Double extencionRate, Integer term, Double totalPay, Date date,
-			Double periodicalPay);
+    /**
+     * extend given loan wits calculated params
+     * 
+     * @param old
+     * @param lastPayDate
+     * @param extencionRate
+     * @param term
+     * @param totalPay
+     * @param date
+     * @param periodicalPay
+     * @return
+     */
+    public Debts createDebtExtension(Debts old, Date lastPayDate, Double extencionRate, Integer term, Double totalPay, Date date, Double periodicalPay);
 
-	public List<Debts> getGivenDebts();
+    /**
+     * return given loans
+     * 
+     * @return
+     */
+    public List<Debts> getGivenDebts();
 
-	public Debts getDebt(Long debtId);
+    /**
+     * fins by id
+     * 
+     * @param debtId
+     * @return
+     */
+    public Debts getDebt(Long debtId);
 }

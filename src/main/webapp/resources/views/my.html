@@ -24,14 +24,14 @@
 			<td style="text-align: center;">{{item.loan}}</td>
 			<td style="text-align: center;">{{item.rate}}</td>
 			<td style="text-align: center;">{{item.term}}</td>
-			<td style="text-align: center;">{{item.totalPay}}</td>
+			<td style="text-align: center;"><span name="totalPay" >{{item.totalPay}}</span></td>
 			<td style="text-align: center;">{{item.periodicalPay}}</td>
 			<td style="text-align: center;">{{item.lastPayDate}}</td>
 			<td style="text-align: center;">{{item.active}}</td>
 				
 			<td style="width: 100px; text-align: center;">
 				<button class="btn btn-mini btn-success" ng-click="extend(item.id);"
-				 ng-disabled="!item.active" >Extend</button>
+				 ng-disabled="!item.active" id="extendId">Extend</button>
 			</td>
 		</tr>
 	</tbody>

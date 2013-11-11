@@ -38,12 +38,13 @@ What gets evaluated
 
 > mvn clean install
 
-> mvn verify -Pintegration-test
+> mvn integration-test -Pintegration-test
 
-> mvn verify -Pweb-integration-test 
+> mvn integration-test -Pweb-integration-test 
 
 > mvn jetty:run
 
+Check in browser
 
 #### 3. On-line 
 
