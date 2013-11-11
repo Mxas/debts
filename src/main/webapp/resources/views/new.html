@@ -21,7 +21,7 @@
 		<div class="controls">
 
 
-			<input class="span3" type="number" id="debt_loan"
+			<input class="span3" type="number" id="debt_loan" ng-pattern="/^[0-9]+$/"
 				ng-model="evaluationCommand.loan" placeholder="Loan" required min="200" max="5000" name="loan">
 			<span class="add-on"> LTL (200 - 5000)</span>
             <span class="error" ng-show="!evaluationCommand.loan">Required!</span>
@@ -34,7 +34,7 @@
 		<div class="controls">
 
 
-			<input class="span3" type="number" id="debt_term"
+			<input class="span3" type="number" id="debt_term" pattern="/^[0-9]+$/*"
 				ng-model="evaluationCommand.term" placeholder="Term" required min="8" max="100" name="term">
 			<span class="add-on"> weeks (8 - 100)</span>
             <span class="error" ng-show="!evaluationCommand.term">Required!</span>

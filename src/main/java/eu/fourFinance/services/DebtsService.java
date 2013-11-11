@@ -7,7 +7,7 @@ import eu.fourFinance.services.impl.DebtsServiceImpl.CalculationsResult;
 
 /**
  * 
- * Naudojama: for loans(debts) 
+ * For: for loans(debts) 
  *
  * @author MindaugasK
  * @since 2013.11.11
@@ -24,7 +24,7 @@ public interface DebtsService {
     public Debts getDebt(Long debtId);
 
     /**
-     * extends depts(loan)
+     * extends debts(loan)
      * 
      * @param debt
      * @return

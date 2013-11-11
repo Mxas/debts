@@ -2,7 +2,7 @@ package eu.fourFinance.testsuites.categories;
 
 /**
  * 
- * Naudojama: web selenium....
+ * For: web selenium....
  *
  * @author MindaugasK
  * @since 2013.11.06

@@ -2,7 +2,7 @@ package eu.fourFinance.services;
 
 /**
  * 
- * Naudojama: vertimai .... 
+ * For: vertimai .... 
  *
  * @author MindaugasK
  * @since 2013.11.11

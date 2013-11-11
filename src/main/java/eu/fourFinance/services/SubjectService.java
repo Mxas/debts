@@ -4,7 +4,7 @@ import eu.fourFinance.model.Subject;
 
 /**
  * 
- * Naudojama: wirking witk subject 
+ * For: working with subject 
  *
  * @author MindaugasK
  * @since 2013.11.11

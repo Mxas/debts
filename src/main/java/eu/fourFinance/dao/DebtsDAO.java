@@ -9,7 +9,7 @@ import eu.fourFinance.model.Evaluation;
 public interface DebtsDAO {
 
     /**
-     * confirms loan taiking
+     * confirms loan taking
      * 
      * @param evaluation
      * @return
@@ -17,7 +17,7 @@ public interface DebtsDAO {
     public Debts createDebt(Evaluation evaluation);
 
     /**
-     * extend given loan wits calculated params
+     * extend given loan wits calculated parameters
      * 
      * @param old
      * @param lastPayDate

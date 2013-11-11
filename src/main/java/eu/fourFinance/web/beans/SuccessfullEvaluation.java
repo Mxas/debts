@@ -1,5 +1,6 @@
 package eu.fourFinance.web.beans;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 
 import org.springframework.util.Assert;
@@ -11,11 +12,11 @@ public class SuccessfullEvaluation {
 
 	private long id;
 	private String code;
-	private double loan;
-	private double rate;
+	private String loan;
+	private String rate;
 	private int term;
-	private Double periodicalPay;
-	private Double totalPay;
+	private String periodicalPay;
+	private String totalPay;
 	private String lastPayDate;
 	private boolean active;
 
@@ -28,11 +29,11 @@ public class SuccessfullEvaluation {
 
 		this.id = e.getId();
 		this.code = e.getSubject().getCode();
-		this.loan = e.getDebt();
-		this.rate = Math.round(e.getRate() * 100);
+		this.loan = format(e.getDebt());
+		this.rate = formatP(e.getRate() * 100);
 		this.term = e.getTerm();
-		this.periodicalPay = e.getPeriodicalPay();
-		this.totalPay = e.getTotalPay();
+		this.periodicalPay = format(e.getPeriodicalPay());
+		this.totalPay = format(e.getTotalPay());
 		this.lastPayDate = new SimpleDateFormat("yyyy-MM-dd").format(e
 				.getLastPayDate());
 
@@ -41,11 +42,11 @@ public class SuccessfullEvaluation {
 	public SuccessfullEvaluation(Debts d) {
 
 		this.code = d.getEvaluation().getSubject().getCode();
-		this.loan = d.getDebt();
-		this.rate = Math.round(d.getRate() * 100);
+		this.loan = format(d.getDebt());
+		this.rate = formatP(d.getRate() * 100);
 		this.term = d.getTerm();
-		this.periodicalPay = d.getPeriodicalPay();
-		this.totalPay = d.getTotalPay();
+		this.periodicalPay = format(d.getPeriodicalPay());
+		this.totalPay = format(d.getTotalPay());
 		this.lastPayDate = new SimpleDateFormat("yyyy-MM-dd").format(d
 				.getLastPayDate());
 
@@ -54,6 +55,16 @@ public class SuccessfullEvaluation {
 
 	}
 
+	private String format(double money) {
+		NumberFormat formatter = NumberFormat.getCurrencyInstance();
+		String moneyString = formatter.format(money);
+		return moneyString;
+	}
+
+	private String formatP(double money) {
+		return String.format("%-2.2f%n", money) + " %";
+	}
+	
 	public String getCode() {
 		return code;
 	}
@@ -62,21 +73,6 @@ public class SuccessfullEvaluation {
 		this.code = code;
 	}
 
-	public double getLoan() {
-		return loan;
-	}
-
-	public void setLoan(double loan) {
-		this.loan = loan;
-	}
-
-	public double getRate() {
-		return rate;
-	}
-
-	public void setRate(double rate) {
-		this.rate = rate;
-	}
 
 	public int getTerm() {
 		return term;
@@ -86,21 +82,6 @@ public class SuccessfullEvaluation {
 		this.term = term;
 	}
 
-	public Double getPeriodicalPay() {
-		return periodicalPay;
-	}
-
-	public void setPeriodicalPay(Double periodicalPay) {
-		this.periodicalPay = periodicalPay;
-	}
-
-	public Double getTotalPay() {
-		return totalPay;
-	}
-
-	public void setTotalPay(Double totalPay) {
-		this.totalPay = totalPay;
-	}
 
 	public String getLastPayDate() {
 		return lastPayDate;
@@ -124,6 +105,38 @@ public class SuccessfullEvaluation {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	public String getLoan() {
+		return loan;
+	}
+
+	public void setLoan(String loan) {
+		this.loan = loan;
+	}
+
+	public String getRate() {
+		return rate;
+	}
+
+	public void setRate(String rate) {
+		this.rate = rate;
+	}
+
+	public String getPeriodicalPay() {
+		return periodicalPay;
+	}
+
+	public void setPeriodicalPay(String periodicalPay) {
+		this.periodicalPay = periodicalPay;
+	}
+
+	public String getTotalPay() {
+		return totalPay;
+	}
+
+	public void setTotalPay(String totalPay) {
+		this.totalPay = totalPay;
 	}
 
 }

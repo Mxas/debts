@@ -8,7 +8,7 @@ import eu.fourFinance.model.Subject;
 
 /**
  * 
- * Naudojama: Evaluations... 
+ * For: Evaluations... 
  *
  * @author MindaugasK
  * @since 2013.11.11
@@ -39,7 +39,7 @@ public interface EvaluationDAO {
     public List<Evaluation> getSubjectEvaluation(Subject subject);
 
     /**
-     * counts given loans by IP and date perion
+     * counts given loans by IP and date period
      * 
      * @param requestIp
      * @param from
